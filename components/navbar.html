@@ -1,0 +1,42 @@
+<!-- Dark strip behind the header so the rounded top corners show like the reference -->
+<div id="navbar-wrapper" class="sticky top-0 z-40">
+  <div id="navbar-bar" class="bg-[#1e1e1e] pt-3 transition-transform duration-300 ease-in-out motion-reduce:transition-none">
+  <header class="bg-white rounded-t-[28px] rounded-b-none font-['Inter',sans-serif]">
+    <div class="flex items-center justify-between px-4 lg:px-12 h-[70px]">
+
+      <!-- Mobile menu button -->
+      <button id="menu-open" class="lg:hidden" aria-label="Menu"><i data-lucide="menu"></i></button>
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 text-neutral-900">
+        <svg width="26" height="48" viewBox="0 0 26 48" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M22 8C22 4 18 2 13 2C7 2 4 6 4 11c0 6 6 8 12 10c5 2 7 5 7 9 0 5-4 9-10 9-5 0-9-3-9-7"/>
+        </svg>
+        <span class="text-[22px] font-medium tracking-tight">ShiftCam <span class="font-light text-neutral-400">Gear</span></span>
+      </a>
+
+      <!-- Nav -->
+      <nav class="hidden lg:flex items-center gap-2 text-[16px] font-medium text-neutral-900 absolute left-1/2 -translate-x-1/2">
+        <a href="/pages/shop.html" class="px-4 py-2 rounded-full hover:bg-black hover:text-white transition-colors duration-200">iPhone 18 Pro</a>
+        <a href="/pages/shop.html" class="flex items-center gap-1.5 px-5 py-2 rounded-full hover:bg-black hover:text-white transition-colors duration-200">SHOP <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></a>
+        <a href="/#guide" class="flex items-center gap-1.5 px-4 py-2 rounded-full hover:bg-black hover:text-white transition-colors duration-200">EXPLORE <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></a>
+        <a href="/#brand" class="flex items-center gap-1.5 px-4 py-2 rounded-full hover:bg-black hover:text-white transition-colors duration-200">The Brand <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i></a>
+      </nav>
+
+      <!-- Icons -->
+      <div class="flex items-center gap-5 text-neutral-900">
+        <button type="button" aria-label="Search" data-static-note="Search is disabled in this static demo — browse the shop instead."><i data-lucide="search" class="w-6 h-6"></i></button>
+        <button type="button" aria-label="Account" class="hidden sm:block" data-static-note="Accounts are disabled in this static demo."><i data-lucide="user" class="w-6 h-6"></i></button>
+        <button type="button" data-cart-open aria-label="Cart" class="hover:opacity-60 transition"><i data-lucide="shopping-cart" class="w-6 h-6"></i></button>
+      </div>
+    </div>
+  </header>
+  </div>
+</div>
+
+<aside id="mobile-menu" class="fixed inset-y-0 right-0 w-72 max-w-full bg-white z-50 p-6 translate-x-full shadow-2xl">
+  <button id="menu-close" class="mb-6" aria-label="Close"><i data-lucide="x"></i></button>
+  <nav class="flex flex-col gap-5 font-semibold">
+    <a href="/pages/shop.html">iPhone 18 Pro</a><a href="/pages/shop.html">Shop</a><a href="/#guide">Explore</a><a href="/#brand">The Brand</a><a href="/pages/cart.html">Cart</a>
+  </nav>
+</aside>

@@ -1,0 +1,152 @@
+<!-- ================= CART DRAWER ================= -->
+<div id="cart-overlay" data-cart-close class="pointer-events-none fixed inset-0 z-[90] bg-black/40 opacity-0 transition-opacity duration-300"></div>
+
+<aside id="cart-drawer" role="dialog" aria-modal="true" aria-label="Shopping cart" aria-hidden="true"
+       class="fixed right-0 top-0 z-[100] flex h-full w-full max-w-[430px] translate-x-full flex-col overflow-hidden bg-white shadow-2xl transition-transform duration-300 ease-out sm:rounded-l-[30px]">
+
+  <!-- Header / tabs -->
+  <header class="relative flex shrink-0 items-end gap-5 border-b border-neutral-100 px-6 pb-6 pt-8 sm:px-9">
+    <button type="button" data-tab="cart" class="text-[26px] font-semibold leading-none tracking-tight text-neutral-950">Cart<sup class="ml-1 align-super text-[13px] font-medium">2</sup></button>
+    <button type="button" data-tab="recent" class="text-[26px] font-semibold leading-none tracking-tight text-neutral-300 transition hover:text-neutral-400">Recently viewed</button>
+    <button type="button" data-cart-close aria-label="Close cart" class="absolute right-5 top-7 flex h-9 w-9 items-center justify-center rounded-full text-neutral-500 transition hover:bg-neutral-100 hover:text-neutral-900">
+      <i data-lucide="x" class="h-4 w-4"></i>
+    </button>
+  </header>
+
+  <!-- ===== Cart tab ===== -->
+  <section id="tab-cart" class="flex min-h-0 flex-1 flex-col">
+    <div class="flex min-h-0 flex-1 flex-col overflow-y-auto px-6 pt-7 sm:px-9">
+      <!-- Free shipping progress -->
+      <p class="text-[13px] leading-relaxed text-neutral-800">Spend <b class="font-semibold">$46.09</b> more to reach free standard shipping!</p>
+      <div class="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-neutral-200">
+        <div class="h-full w-[54%] rounded-full bg-neutral-950"></div>
+      </div>
+      <p class="mt-2 text-[10px] text-neutral-500">Free standard shipping on orders over $100 USD.</p>
+
+      <!-- Items -->
+      <ul class="mt-4 divide-y divide-neutral-100">
+        <li class="flex gap-4 py-5">
+          <a href="/pages/product-page.html" class="h-[76px] w-[76px] shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="/images/product/s-mount-stick-on-plate.webp" alt="Universal S.Mount" class="h-full w-full object-contain p-2" loading="lazy"></a>
+          <div class="flex min-w-0 flex-1 flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold"><a href="/pages/product-page.html" class="hover:underline">Universal S.Mount</a></p>
+                <p class="mt-1 text-xs text-neutral-500">🏷 KEYNOTE10 (-$2.99)</p>
+              </div>
+              <p class="shrink-0 text-right text-sm font-semibold"><s class="mb-0.5 block text-[11px] font-normal text-neutral-400">$29.99</s><span>$27.00</span></p>
+            </div>
+            <div class="mt-auto flex items-center justify-between pt-3">
+              <div class="flex items-center rounded-full border border-neutral-200" data-static-note="Cart editing is disabled in this static demo.">
+                <span class="grid h-8 w-8 place-items-center text-lg leading-none text-neutral-400">−</span>
+                <span class="w-8 text-center text-xs font-semibold">1</span>
+                <span class="grid h-8 w-8 place-items-center text-lg leading-none text-neutral-400">+</span>
+              </div>
+              <button type="button" data-static-note="Cart editing is disabled in this static demo." class="text-xs text-neutral-500 underline transition hover:text-neutral-900">Remove</button>
+            </div>
+          </div>
+        </li>
+        <li class="flex gap-4 py-5">
+          <a href="/pages/product-page.html" class="h-[76px] w-[76px] shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="/images/product/s-mount-stick-on-plate-2.webp" alt="S.Mount Stick-On Plate" class="h-full w-full object-contain p-2" loading="lazy"></a>
+          <div class="flex min-w-0 flex-1 flex-col">
+            <div class="flex items-start justify-between gap-3">
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold"><a href="/pages/product-page.html" class="hover:underline">S.Mount Stick-On Plate</a></p>
+                <p class="mt-1 text-xs text-neutral-500">iPhone 18 Pro Max / Burgundy</p>
+                <p class="mt-0.5 text-xs text-neutral-500">🏷 KEYNOTE10 (-$2.99)</p>
+              </div>
+              <p class="shrink-0 text-right text-sm font-semibold"><s class="mb-0.5 block text-[11px] font-normal text-neutral-400">$29.90</s><span>$26.91</span></p>
+            </div>
+            <div class="mt-auto flex items-center justify-between pt-3">
+              <div class="flex items-center rounded-full border border-neutral-200" data-static-note="Cart editing is disabled in this static demo.">
+                <span class="grid h-8 w-8 place-items-center text-lg leading-none text-neutral-400">−</span>
+                <span class="w-8 text-center text-xs font-semibold">1</span>
+                <span class="grid h-8 w-8 place-items-center text-lg leading-none text-neutral-400">+</span>
+              </div>
+              <button type="button" data-static-note="Cart editing is disabled in this static demo." class="text-xs text-neutral-500 underline transition hover:text-neutral-900">Remove</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <!-- You may also like -->
+      <div class="mt-8 pb-6">
+        <h3 class="border-b border-neutral-100 pb-3 text-base font-bold tracking-tight">You may also like</h3>
+        <div class="mt-4 flex items-center gap-4 rounded-2xl border border-neutral-100 p-4">
+          <a href="/pages/product-page.html" class="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="/images/product/snapgrip-pro.webp" alt="SnapGrip Pro" class="h-full w-full object-contain p-1" loading="lazy"></a>
+          <div class="min-w-0 flex-1">
+            <p class="truncate text-sm font-semibold"><a href="/pages/product-page.html" class="hover:underline">SnapGrip Pro*</a></p>
+            <p class="mt-1 text-sm text-neutral-900">$89.00</p>
+          </div>
+          <button type="button" data-static-note="Adding items is disabled in this static demo." class="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-neutral-950 px-4 text-[13px] font-semibold text-white transition hover:bg-neutral-800"><span class="text-base leading-none">+</span>Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky footer -->
+    <div class="shrink-0 border-t border-neutral-100 bg-white">
+      <!-- Order note / Shipping toggles -->
+      <div class="grid grid-cols-2 border-b border-neutral-100 text-sm">
+        <button type="button" id="btn-note" class="flex items-center justify-center gap-2.5 py-4 transition hover:bg-neutral-50">
+          <i data-lucide="sticky-note" class="h-[18px] w-[18px]"></i> Order note
+        </button>
+        <button type="button" id="btn-ship" class="flex items-center justify-center gap-2.5 border-l border-neutral-200 py-4 transition hover:bg-neutral-50">
+          <i data-lucide="truck" class="h-[18px] w-[18px]"></i> Shipping
+        </button>
+      </div>
+      <div id="panel-note" class="hidden border-b border-neutral-100 px-6 py-4 sm:px-9">
+        <label for="order-note" class="text-xs font-semibold">Add a note to your order</label>
+        <textarea id="order-note" rows="3" placeholder="Special instructions for your order…" class="mt-2 w-full resize-none rounded-xl bg-neutral-50 px-4 py-3 text-sm outline-none ring-1 ring-transparent transition placeholder:text-neutral-500 focus:ring-neutral-900"></textarea>
+      </div>
+      <div id="panel-ship" class="hidden border-b border-neutral-100 px-6 py-4 sm:px-9">
+        <p class="text-xs font-semibold">Shipping</p>
+        <p class="mt-1 text-xs leading-relaxed text-neutral-500">Shipping &amp; taxes are calculated at checkout. Free standard shipping on orders of $100 or more.</p>
+        <select class="mt-3 w-full appearance-none rounded-xl bg-neutral-50 px-4 py-3 text-sm outline-none ring-1 ring-transparent transition focus:ring-neutral-900">
+          <option>Bangladesh</option><option>United States</option><option>United Kingdom</option><option>Canada</option><option>Hong Kong SAR</option>
+        </select>
+      </div>
+
+      <!-- Subtotal + actions -->
+      <div class="bg-neutral-50 px-6 pb-7 pt-5 sm:px-9">
+        <p class="text-[11px] leading-relaxed text-neutral-600">For US orders: Customs duties &amp; taxes may apply upon delivery. <a href="#" class="underline transition hover:text-neutral-900">Learn more</a></p>
+        <div class="mt-4 flex items-baseline justify-between">
+          <p class="text-sm text-neutral-600">Subtotal · 2 items</p>
+          <p class="text-xl font-bold tracking-tight text-neutral-950">$53.91</p>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-3">
+          <a href="/pages/cart.html" class="flex h-12 items-center justify-center rounded-full border border-neutral-900 text-sm font-semibold text-neutral-900 transition hover:bg-neutral-900 hover:text-white">View cart</a>
+          <a href="/pages/checkout.html" class="flex h-12 items-center justify-center rounded-full bg-neutral-950 text-sm font-semibold text-white transition hover:bg-neutral-800">Check out</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Recently viewed tab ===== -->
+  <section id="tab-recent" class="hidden min-h-0 flex-1 overflow-y-auto px-6 py-7 sm:px-9">
+    <ul class="divide-y divide-neutral-100">
+      <li class="flex items-center gap-4 py-4">
+        <a href="/pages/product-page.html" class="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="/images/superzoom/2x-tele.webp" alt="2x SuperZoom Tele" class="h-full w-full object-contain p-1" loading="lazy"></a>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-semibold"><a href="/pages/product-page.html" class="hover:underline">2x SuperZoom Tele</a></p>
+          <p class="mt-1 text-sm">$269.90</p>
+        </div>
+        <button type="button" data-static-note="Adding items is disabled in this static demo." class="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-neutral-950 px-4 text-[13px] font-semibold text-white transition hover:bg-neutral-800"><span class="text-base leading-none">+</span>Add</button>
+      </li>
+      <li class="flex items-center gap-4 py-4">
+        <a href="/pages/product-page.html" class="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="/images/product/progrip-vision-kit.webp" alt="ProGrip Vision Kit" class="h-full w-full object-contain p-1" loading="lazy"></a>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-semibold"><a href="/pages/product-page.html" class="hover:underline">ProGrip Vision Kit</a></p>
+          <p class="mt-1 text-sm">$412.34</p>
+        </div>
+        <button type="button" data-static-note="Adding items is disabled in this static demo." class="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-neutral-950 px-4 text-[13px] font-semibold text-white transition hover:bg-neutral-800"><span class="text-base leading-none">+</span>Add</button>
+      </li>
+      <li class="flex items-center gap-4 py-4">
+        <a href="/pages/product-page.html" class="h-[72px] w-[72px] shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="/images/product/snapgrip-pro.webp" alt="SnapGrip Pro" class="h-full w-full object-contain p-1" loading="lazy"></a>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-sm font-semibold"><a href="/pages/product-page.html" class="hover:underline">SnapGrip Pro*</a></p>
+          <p class="mt-1 text-sm">$89.00</p>
+        </div>
+        <button type="button" data-static-note="Adding items is disabled in this static demo." class="inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full bg-neutral-950 px-4 text-[13px] font-semibold text-white transition hover:bg-neutral-800"><span class="text-base leading-none">+</span>Add</button>
+      </li>
+    </ul>
+  </section>
+</aside>

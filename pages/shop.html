@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop – ShiftCam Gear</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0b0c'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='20' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] }, colors: { ink: '#0b0b0c' } } } }
+  </script>
+  <style>
+    /* Collapsible sidebar (desktop) */
+    @media (min-width: 1024px) {
+      #shop-layout.filters-closed { grid-template-columns: minmax(0, 1fr); }
+      #shop-layout.filters-closed #filters { display: none; }
+    }
+    /* Filter accordion */
+    #filters summary { list-style: none; cursor: pointer; }
+    #filters summary::-webkit-details-marker { display: none; }
+    /* Rounded checkbox */
+    .cb { appearance: none; -webkit-appearance: none; flex: none; width: 20px; height: 20px; border: 1px solid #b5b5b5; border-radius: 6px; background: #fff; cursor: pointer; }
+    .cb:checked { background: #0b0b0c url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center / 14px no-repeat; border-color: #0b0b0c; }
+    /* Toggle switch */
+    .sw-track { display: block; width: 38px; height: 20px; border-radius: 999px; background: #ececec; border: 1px solid #bdbdbd; transition: background .2s; }
+    .sw-knob { position: absolute; left: 4px; top: 4px; width: 12px; height: 12px; border-radius: 999px; background: #777; transition: transform .2s, background .2s; }
+    .sw input:checked ~ .sw-track { background: #0b0b0c; border-color: #0b0b0c; }
+    .sw input:checked ~ .sw-knob { transform: translateX(18px); background: #fff; }
+  </style>
+</head>
+<body class="bg-white font-sans text-neutral-900 antialiased">
+<div data-include="../components/announcement-bar.html"></div>
+<div data-include="../components/navbar.html"></div>
+<div data-include="../components/cart-drawer.html"></div>
+
+<!-- Full width main -->
+<main class="w-full px-5 sm:px-8 lg:px-11 pb-20">
+
+  <!-- Heading -->
+  <section class="relative overflow-hidden pt-10 pb-6 lg:pt-14">
+    <span aria-hidden="true" class="pointer-events-none absolute left-[2%] top-6 select-none whitespace-nowrap text-[22vw] lg:text-[11rem] font-bold tracking-tighter leading-none text-neutral-100">Shop All</span>
+    <nav class="relative flex items-center gap-3 text-[11px] text-neutral-700">
+      <a href="/" aria-label="Home"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10H3z"/></svg></a>
+      <span>Shop</span>
+    </nav>
+    <h1 class="relative mt-4 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter">Shop</h1>
+  </section>
+
+  <!-- Tabs row -->
+  <div class="mt-6 flex items-end justify-between gap-6">
+    <div class="flex items-baseline gap-x-3 overflow-x-auto whitespace-nowrap pb-2 text-xl xl:text-[26px] leading-none">
+      <button type="button" class="text-neutral-950"><span class="underline underline-offset-[6px] decoration-2">All Devices</span><sup class="ml-0.5 text-xs">57</sup></button>
+      <span class="text-neutral-300 text-lg">/</span><button type="button" class="text-neutral-400">iPhone 18 Series<sup class="ml-0.5 text-xs">57</sup></button>
+      <span class="text-neutral-300 text-lg">/</span><button type="button" class="text-neutral-400">iPhone 17 Series<sup class="ml-0.5 text-xs">57</sup></button>
+      <span class="text-neutral-300 text-lg">/</span><button type="button" class="text-neutral-400">iPhone 16 Series<sup class="ml-0.5 text-xs">57</sup></button>
+      <span class="text-neutral-300 text-lg">/</span><button type="button" class="text-neutral-400">iPhone 15 Series<sup class="ml-0.5 text-xs">57</sup></button>
+      <span class="text-neutral-300 text-lg">/</span><button type="button" class="text-neutral-400">iPhone 14 Series<sup class="ml-0.5 text-xs">57</sup></button>
+      <span class="text-neutral-300 text-lg">/</span><button type="button" class="text-neutral-400">Other Devices<sup class="ml-0.5 text-xs">57</sup></button>
+    </div>
+  </div>
+
+  <div id="shop-layout" class="mt-10 grid gap-x-[60px] gap-y-6 lg:grid-cols-[clamp(260px,20vw,390px)_minmax(0,1fr)]">
+
+    <!-- Filters -->
+    <aside id="filters" class="text-neutral-900">
+
+      <!-- Mobile compact filters -->
+      <details class="lg:hidden rounded-2xl bg-neutral-50 p-4">
+        <summary class="cursor-pointer text-sm font-semibold">Filters</summary>
+        <div class="mt-3 space-y-2.5 text-sm">
+          <p class="font-medium">Product Category</p>
+          <label class="flex items-center gap-2"><input type="checkbox" class="cb"> Grips</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="cb"> Lenses</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="cb"> Cases &amp; Mounts</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="cb"> Lighting</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="cb"> Stands</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="cb"> Accessories</label>
+          <label class="flex items-center gap-2"><input type="checkbox" class="cb"> Bundles</label>
+          <label class="flex items-center gap-2 pt-1 font-medium"><input type="checkbox" class="cb"> On sale only</label>
+        </div>
+      </details>
+
+      <!-- Desktop filters -->
+      <div class="hidden lg:block">
+
+        <!-- Product Category (collapsed) -->
+        <details class="group border-b border-neutral-200">
+          <summary class="flex items-center justify-between py-6 text-lg xl:text-xl">
+            Product Category
+            <svg class="h-5 w-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <ul class="space-y-3.5 pb-6 text-base">
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"> Grips <span class="text-sm text-neutral-400">(3)</span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"> Lenses <span class="text-sm text-neutral-400">(4)</span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"> Cases &amp; Mounts <span class="text-sm text-neutral-400">(2)</span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"> Lighting <span class="text-sm text-neutral-400">(1)</span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"> Stands <span class="text-sm text-neutral-400">(2)</span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"> Accessories <span class="text-sm text-neutral-400">(3)</span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"> Bundles <span class="text-sm text-neutral-400">(3)</span></label></li>
+          </ul>
+        </details>
+
+        <!-- In stock only -->
+        <div class="flex items-center justify-between border-b border-neutral-200 py-6 text-lg xl:text-xl">
+          <span>In stock only</span>
+          <label class="sw relative inline-flex cursor-pointer"><input type="checkbox" class="sr-only"><span class="sw-track"></span><span class="sw-knob"></span></label>
+        </div>
+
+        <!-- Price (collapsed) -->
+        <details class="group border-b border-neutral-200">
+          <summary class="flex items-center justify-between py-6 text-lg xl:text-xl">
+            Price
+            <svg class="h-5 w-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <div class="pb-6">
+            <div class="relative h-px bg-neutral-800"><i class="absolute -left-1 -top-[5px] h-3 w-3 rounded-full border border-neutral-800 bg-white"></i><i class="absolute -right-1 -top-[5px] h-3 w-3 rounded-full border border-neutral-800 bg-white"></i></div>
+            <div class="mt-5 flex items-center gap-2 text-sm text-neutral-400">
+              <label class="flex flex-1 items-center justify-between rounded-lg bg-neutral-50 px-3 py-3"><span>$</span><input type="number" value="0" min="0" class="w-14 bg-transparent text-right text-neutral-900 outline-none"></label>to
+              <label class="flex flex-1 items-center justify-between rounded-lg bg-neutral-50 px-3 py-3"><span>$</span><input type="number" value="1080" min="0" class="w-14 bg-transparent text-right text-neutral-900 outline-none"></label>
+            </div>
+          </div>
+        </details>
+
+        <!-- Bundles / On-Sale -->
+        <div class="flex items-center justify-between border-b border-neutral-200 py-6 text-lg xl:text-xl">
+          <span>Bundles/On-Sale</span>
+          <label class="sw relative inline-flex cursor-pointer"><input type="checkbox" class="sr-only"><span class="sw-track"></span><span class="sw-knob"></span></label>
+        </div>
+
+        <!-- Phone Model (open) -->
+        <details class="group" open>
+          <summary class="flex items-center justify-between py-6 text-lg xl:text-xl">
+            Phone Model
+            <svg class="h-5 w-5 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 15l6-6 6 6" class="hidden"/><path d="M6 9l6 6 6-6"/></svg>
+          </summary>
+          <ul class="space-y-3.5 pb-6 text-base">
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"><span>iPhone 18 Pro Series <span class="text-sm text-neutral-400">(52)</span></span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"><span>iPhone 17 Series <span class="text-sm text-neutral-400">(52)</span></span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"><span>iPhone 16 Series <span class="text-sm text-neutral-400">(53)</span></span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"><span>iPhone 15 Series <span class="text-sm text-neutral-400">(53)</span></span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"><span>iPhone 14 Series <span class="text-sm text-neutral-400">(53)</span></span></label></li>
+            <li><label class="flex items-center gap-3"><input type="checkbox" class="cb"><span>Other Phones <span class="text-sm text-neutral-400">(54)</span></span></label></li>
+          </ul>
+        </details>
+      </div>
+    </aside>
+
+    <!-- Product grid -->
+    <div>
+      <div class="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
+
+        <!-- 1 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.4</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/snapgrip-pro.webp" alt="SnapGrip Pro*" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">SnapGrip Pro*</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$89.00 USD</p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i><i class="h-4 w-4 rounded-full bg-neutral-800"></i></div>
+        </a>
+
+        <!-- 2 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.3</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/wrkflw-combo.webp" alt="Pocket Light 2.0" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">Pocket Light 2.0</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$39.90 USD</p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full bg-neutral-800"></i><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i></div>
+        </a>
+
+        <!-- 3 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 3.3</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/s-mount-stick-on-plate.webp" alt="Universal S.Mount" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">Universal S.Mount</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$29.99 USD</p>
+        </a>
+
+        <!-- 4 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 30%</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.4</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/p-starter-kit.webp" alt="SnapPouch - Pocket" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">SnapPouch - Pocket</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$13.99 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$19.99 USD</s></p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full bg-neutral-800"></i><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i><i class="h-4 w-4 rounded-full bg-blue-900"></i><i class="h-4 w-4 rounded-full border border-neutral-300 bg-rose-100"></i><span class="text-xs text-neutral-500">+1</span></div>
+        </a>
+
+        <!-- 5 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 30%</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.4</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/creator-kit-pro.webp" alt="Travel Kit Pro 2.0" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">Travel Kit Pro 2.0</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$150.39 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$214.84 USD</s></p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i><i class="h-4 w-4 rounded-full bg-neutral-800"></i></div>
+        </a>
+
+        <!-- 6 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.2</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/p-starter-kit-2.webp" alt="Pro Camera Wrist Strap" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">Pro Camera Wrist Strap</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$19.99 USD</p>
+        </a>
+
+        <!-- 7 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.2</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/vision-kit-2.webp" alt="Pro Camera Neck Strap" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">Pro Camera Neck Strap</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$29.99 USD</p>
+        </a>
+
+        <!-- Promo tile -->
+        <a href="./product-page.html" class="relative col-span-2 flex min-h-[260px] items-center justify-center overflow-hidden rounded-[28px] bg-neutral-900 p-6 text-center text-white lg:col-span-1">
+          <img src="../images/superzoom/superzoom-banner-bg.jpg" alt="" class="absolute inset-0 h-full w-full object-cover opacity-60" loading="lazy">
+          <div class="relative">
+            <h3 class="text-3xl xl:text-4xl font-bold tracking-tight leading-[1.05]">Shop Best<br>Deals</h3>
+            <p class="mt-3 text-sm">Up to 30% OFF</p>
+          </div>
+        </a>
+
+        <!-- 9 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 15%</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 2.7</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/progrip-vision-kit.webp" alt="SnapStand Max" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">SnapStand Max</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">From $67.15 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$79.00 USD</s></p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full bg-neutral-800"></i><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i></div>
+        </a>
+
+        <!-- 10 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 20%</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 3.1</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/progrip-vision-kit-2.webp" alt="SnapStand Mini" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">SnapStand Mini</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$23.20 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$29.00 USD</s></p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i><i class="h-4 w-4 rounded-full bg-blue-700"></i><i class="h-4 w-4 rounded-full bg-neutral-800"></i></div>
+        </a>
+
+        <!-- 11 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 flex flex-col gap-1.5"><b class="rounded-full bg-orange-500 px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Cinematic</b><b class="w-fit rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 10%</b></span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.3</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/superzoom/2x-tele.webp" alt="1.33x Anamorphic" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">1.33x Anamorphic</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$134.99 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$149.99 USD</s></p>
+        </a>
+
+        <!-- 12 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 15%</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.4</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/product/progrip-2.webp" alt="SnapGrip" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">SnapGrip</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$58.65 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$69.00 USD</s></p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full bg-neutral-800"></i><i class="h-4 w-4 rounded-full bg-neutral-600"></i><i class="h-4 w-4 rounded-full bg-rose-400"></i></div>
+        </a>
+
+        <!-- 13 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-orange-500 px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">NEW</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.1</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/superzoom/2x-tele.webp" alt="2x SuperZoom Tele" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">2x SuperZoom Tele</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$269.90 USD</p>
+        </a>
+
+        <!-- 14 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 10%</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.5</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/superzoom/2x-tele.webp" alt="2x SuperZoom Macro Kit" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">2x SuperZoom Macro Kit</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$269.90 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$299.90 USD</s></p>
+        </a>
+
+        <!-- 15 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.3</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/superzoom/2x-tele.webp" alt="2x SuperZoom Filters Kit" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">2x SuperZoom Filters Kit</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$384.01 USD</p>
+        </a>
+
+        <!-- 16 -->
+        <a href="./product-page.html" class="relative flex flex-col rounded-[28px] bg-[#f7f7f7] p-5 xl:p-8">
+          <span class="absolute left-5 top-5 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 15%</span>
+          <span class="absolute right-5 top-5 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.2</span>
+          <div class="flex aspect-[10/11] items-center justify-center overflow-hidden"><img src="../images/superzoom/2x-tele.webp" alt="2x SuperZoom Full Kit" class="h-full w-full object-contain" loading="lazy"></div>
+          <h3 class="mt-5 text-base xl:text-xl font-medium">2x SuperZoom Full Kit</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$433.00 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$509.00 USD</s></p>
+        </a>
+      </div>
+
+      <!-- Pagination -->
+      <nav class="mt-12 flex items-center justify-center gap-6 text-sm">
+        <span class="flex h-8 w-8 items-center justify-center rounded-full bg-neutral-950 text-white">1</span>
+        <button type="button">2</button><button type="button">3</button><span>…</span><button type="button">6</button><button type="button" class="font-medium">Next →</button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Empower your creativity with... -->
+  <section class="mt-20 lg:mt-28">
+    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter">Empower your creativity with...</h2>
+    <div class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr] lg:auto-rows-[clamp(240px,18vw,346px)]">
+
+      <!-- Grips (tall) -->
+      <a href="#" class="group relative min-h-[420px] overflow-hidden rounded-[20px] bg-neutral-200 sm:col-span-2 lg:col-span-1 lg:row-span-2">
+        <img src="../images/empower/grips-1.webp" alt="Grips" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent"></div>
+        <div class="absolute inset-0 flex items-end justify-between p-5 xl:p-9 text-white">
+          <div>
+            <h3 class="text-3xl xl:text-[34px] font-bold tracking-tight leading-none">Grips</h3>
+            <p class="mt-2 text-xs xl:text-[13px]">Ergonomic grips for phones with shutter button and built-in powerbank</p>
+          </div>
+          <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Lenses (wide) -->
+      <a href="#" class="group relative min-h-[240px] overflow-hidden rounded-[20px] bg-neutral-200 sm:col-span-2 lg:col-span-2">
+        <img src="../images/empower/mobile-lens-1.webp" alt="Lenses" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent"></div>
+        <div class="absolute inset-0 flex items-end justify-between p-5 xl:p-9 text-white">
+          <div>
+            <h3 class="text-3xl xl:text-[34px] font-bold tracking-tight leading-none">Lenses</h3>
+            <p class="mt-2 text-xs xl:text-[13px]">Unleash your mobile creativity with true optical precision</p>
+          </div>
+          <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Lights -->
+      <a href="#" class="group relative min-h-[300px] overflow-hidden rounded-[20px] bg-neutral-200">
+        <img src="../images/empower/cinematic-filters.webp" alt="Lights" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent"></div>
+        <div class="absolute inset-0 flex items-end justify-between p-5 xl:p-9 text-white">
+          <div>
+            <h3 class="text-3xl xl:text-[34px] font-bold tracking-tight leading-none">Lights</h3>
+            <p class="mt-2 text-xs xl:text-[13px]">Great content starts with great lighting</p>
+          </div>
+          <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+
+      <!-- Accessories -->
+      <a href="#" class="group relative min-h-[300px] overflow-hidden rounded-[20px] bg-neutral-200">
+        <img src="../images/empower/cases-mounts.webp" alt="Accessories" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-black/5 to-transparent"></div>
+        <div class="absolute inset-0 flex items-end justify-between p-5 xl:p-9 text-white">
+          <div>
+            <h3 class="text-3xl xl:text-[34px] font-bold tracking-tight leading-none">Accessories</h3>
+            <p class="mt-2 text-xs xl:text-[13px]">Gear up!</p>
+          </div>
+          <svg class="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h16M14 6l6 6-6 6"/></svg>
+        </div>
+      </a>
+    </div>
+  </section>
+
+ <!-- Banner -->
+ <!-- Collections (from sections/collections.html, image paths adjusted for pages/ depth) -->
+ <div class="mt-20 lg:mt-28 space-y-6 sm:space-y-8">
+   <!-- For Mobile Photography -->
+   <section class="relative h-[50vh] sm:h-[60vh] md:h-[70vh] min-h-[400px] sm:min-h-[500px] max-h-[600px] sm:max-h-[700px] rounded-2xl overflow-hidden">
+     <img src="../images/for-mobile-photography.webp" alt="For Mobile Photography"
+       class="absolute inset-0 w-full h-full object-cover">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+     <div class="relative h-full flex items-end">
+       <div class="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-12 right-4 sm:right-6 md:right-12 text-white p-4 sm:p-6 md:p-8">
+         <p class="text-[10px] sm:text-[11px] md:text-sm font-medium tracking-wider uppercase mb-1 sm:mb-2">PROFESSIONAL TOOLS</p>
+         <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-3 sm:mb-4">For Mobile
+           Photography</h2>
+         <p class="text-xs sm:text-sm md:text-base text-white/90 mb-4 sm:mb-6 max-w-[90%]">From lens-grade optics to ergonomic shooting grips,
+           this collection is designed to transform your phone into a serious photography tool.</p>
+         <a href="/pages/shop.html"
+           class="inline-flex items-center gap-1.5 sm:gap-2 bg-white text-ink text-xs sm:text-sm font-semibold rounded-full px-4 sm:px-5 py-2 sm:py-2.5 hover:bg-neutral-100 transition-colors">View
+           Collection <i data-lucide="arrow-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i></a>
+       </div>
+     </div>
+   </section>
+
+   <!-- For Travel Photography -->
+   <section class="relative h-[50vh] sm:h-[60vh] md:h-[70vh] min-h-[400px] sm:min-h-[500px] max-h-[600px] sm:max-h-[700px] rounded-2xl overflow-hidden">
+     <img src="../images/for-travel-photography.webp" alt="For Travel Photography"
+       class="absolute inset-0 w-full h-full object-cover">
+     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+     <div class="relative h-full flex items-end">
+       <div class="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-12 text-white p-4 sm:p-6 md:p-8 text-right">
+         <p class="text-[10px] sm:text-[11px] md:text-sm font-medium tracking-wider uppercase mb-1 sm:mb-2">PORTABLE GEAR</p>
+         <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight mb-3 sm:mb-4">For Travel
+           Photography</h2>
+         <p class="text-xs sm:text-sm md:text-base text-white/90 mb-4 sm:mb-6">Essential gear for the lightweight creator, designed for
+           those who pack light and move freely.</p>
+         <a href="/pages/shop.html"
+           class="inline-flex items-center gap-1.5 sm:gap-2 bg-white text-ink text-xs sm:text-sm font-semibold rounded-full px-4 sm:px-5 py-2 sm:py-2.5 hover:bg-neutral-100 transition-colors">View
+           Collection <i data-lucide="arrow-right" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i></a>
+       </div>
+     </div>
+   </section>
+ </div>
+
+  <!-- Recently Viewed slider -->
+  <section class="mt-20 lg:mt-28">
+    <div class="flex items-center justify-between gap-4">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tighter">Recently Viewed</h2>
+      <div class="flex shrink-0 items-center gap-2">
+        <button type="button" id="rv-prev" aria-label="Previous" class="flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full border border-neutral-200 text-neutral-400 hover:border-neutral-900 hover:text-neutral-900">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 6l-6 6 6 6"/></svg>
+        </button>
+        <button type="button" id="rv-next" aria-label="Next" class="flex h-11 w-11 lg:h-12 lg:w-12 items-center justify-center rounded-full border border-neutral-900 text-neutral-900">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="rv-track" class="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+
+      <!-- 1 -->
+      <a href="./product-page.html" class="relative w-[78%] shrink-0 snap-start overflow-hidden rounded-[28px] bg-[#f7f7f7] sm:w-[44%] lg:w-[23.4%]">
+        <span class="absolute left-5 top-5 z-10 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 25%</span>
+        <span class="absolute right-5 top-5 z-10 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.5</span>
+        <div class="aspect-square overflow-hidden"><img src="../images/product/progrip-vision-kit.webp" alt="ProGrip Vision Kit" class="h-full w-full object-cover" loading="lazy"></div>
+        <div class="px-5 pb-8 pt-5 xl:px-9">
+          <h3 class="text-base xl:text-xl font-medium">ProGrip Vision Kit</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$412.34 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$549.79 USD</s></p>
+        </div>
+      </a>
+
+      <!-- 2 -->
+      <a href="./product-page.html" class="relative w-[78%] shrink-0 snap-start overflow-hidden rounded-[28px] bg-[#f7f7f7] sm:w-[44%] lg:w-[23.4%]">
+        <span class="absolute right-5 top-5 z-10 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.4</span>
+        <div class="aspect-square overflow-hidden"><img src="../images/product/snapgrip-pro.webp" alt="SnapGrip Pro*" class="h-full w-full object-contain p-6" loading="lazy"></div>
+        <div class="px-5 pb-8 pt-5 xl:px-9">
+          <h3 class="text-base xl:text-xl font-medium">SnapGrip Pro*</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$89.00 USD</p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i><i class="h-4 w-4 rounded-full bg-neutral-800"></i></div>
+        </div>
+      </a>
+
+      <!-- 3 -->
+      <a href="./product-page.html" class="relative w-[78%] shrink-0 snap-start overflow-hidden rounded-[28px] bg-[#f7f7f7] sm:w-[44%] lg:w-[23.4%]">
+        <span class="absolute left-5 top-5 z-10 rounded-full bg-orange-500 px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">NEW</span>
+        <span class="absolute right-5 top-5 z-10 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.1</span>
+        <div class="aspect-square overflow-hidden"><img src="../images/superzoom/2x-tele.webp" alt="3.5x SuperZoom Tele" class="h-full w-full object-contain p-6" loading="lazy"></div>
+        <div class="px-5 pb-8 pt-5 xl:px-9">
+          <h3 class="text-base xl:text-xl font-medium">3.5x SuperZoom Tele</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$369.90 USD</p>
+        </div>
+      </a>
+
+      <!-- 4 -->
+      <a href="./product-page.html" class="relative w-[78%] shrink-0 snap-start overflow-hidden rounded-[28px] bg-[#f7f7f7] sm:w-[44%] lg:w-[23.4%]">
+        <span class="absolute left-5 top-5 z-10 rounded-full bg-orange-500 px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">NEW</span>
+        <span class="absolute right-5 top-5 z-10 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.1</span>
+        <div class="aspect-square overflow-hidden"><img src="../images/superzoom/2x-tele.webp" alt="2x SuperZoom Tele" class="h-full w-full object-contain p-6" loading="lazy"></div>
+        <div class="px-5 pb-8 pt-5 xl:px-9">
+          <h3 class="text-base xl:text-xl font-medium">2x SuperZoom Tele</h3>
+          <p class="mt-1 text-sm xl:text-base text-neutral-800">$269.90 USD</p>
+        </div>
+      </a>
+
+      <!-- 5 -->
+      <a href="./product-page.html" class="relative w-[78%] shrink-0 snap-start overflow-hidden rounded-[28px] bg-[#f7f7f7] sm:w-[44%] lg:w-[23.4%]">
+        <span class="absolute left-5 top-5 z-10 rounded-full bg-[#e11d48] px-3 xl:px-4 py-1.5 text-xs xl:text-sm font-semibold text-white">Save 30%</span>
+        <span class="absolute right-5 top-5 z-10 rounded-full bg-white/80 px-3 py-1 text-xs xl:text-sm"><span class="text-amber-500">★</span> 4.4</span>
+        <div class="aspect-square overflow-hidden"><img src="../images/product/creator-kit-pro.webp" alt="Travel Kit Pro 2.0" class="h-full w-full object-contain p-6" loading="lazy"></div>
+        <div class="px-5 pb-8 pt-5 xl:px-9">
+          <h3 class="text-base xl:text-xl font-medium">Travel Kit Pro 2.0</h3>
+          <p class="mt-1 text-sm xl:text-base text-[#e11d48]">$131.59 USD <s class="ml-1 text-xs text-neutral-500 decoration-[#e11d48]">$187.99 USD</s></p>
+          <div class="mt-3 flex items-center gap-2"><i class="h-4 w-4 rounded-full border border-neutral-300 bg-neutral-200"></i><i class="h-4 w-4 rounded-full bg-neutral-800"></i></div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+</main>
+<div data-include="../components/footer.html"></div>
+<script src="https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // Recently Viewed slider arrows
+  (function () {
+    var track = document.getElementById('rv-track');
+    var prev = document.getElementById('rv-prev');
+    var next = document.getElementById('rv-next');
+    if (!track || !prev || !next) return;
+    function step() { var c = track.firstElementChild; return c ? c.getBoundingClientRect().width + 20 : 300; }
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout – ShiftCam Gear</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0b0c'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='20' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Arial', 'Helvetica', 'sans-serif'] } } } }
+  </script>
+  <style>
+    :root { --blue: #0561d1; }
+    body { font-family: Arial, Helvetica, sans-serif; color: #333; }
+
+    /* Two-tone page background (white | grey) */
+    @media (min-width: 1024px) {
+      .co-wrap {
+        min-height: calc(100vh - 58px);
+        background: linear-gradient(90deg, #fff calc(50% + 44px), #dedede calc(50% + 44px), #dedede calc(50% + 45px), #f5f5f5 calc(50% + 45px));
+      }
+    }
+
+    /* Floating-label fields */
+    .fld { position: relative; }
+    .fld input, .fld select {
+      width: 100%; height: 43px; border: 1px solid #d9d9d9; border-radius: 5px;
+      padding: 0 38px 0 11px; font-size: 14px; color: #333; background: #fff; outline: none;
+      appearance: none; -webkit-appearance: none;
+    }
+    .fld label {
+      position: absolute; left: 11px; top: 50%; transform: translateY(-50%);
+      font-size: 13px; color: #707070; pointer-events: none; transition: all .12s ease;
+    }
+    .fld input:focus, .fld select:focus { border-color: var(--blue); box-shadow: 0 0 0 1px var(--blue); }
+    .fld input:focus, .fld input:not(:placeholder-shown), .fld select { padding-top: 15px; }
+    .fld input:focus ~ label, .fld input:not(:placeholder-shown) ~ label, .fld select ~ label {
+      top: 9px; transform: none; font-size: 11px;
+    }
+    .fld .ico { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: #707070; pointer-events: none; }
+
+    /* Checkbox */
+    .chk {
+      appearance: none; -webkit-appearance: none; flex: none; width: 16px; height: 16px; margin: 0;
+      border: 1px solid #b5b5b5; border-radius: 3px; background: #fff; cursor: pointer;
+    }
+    .chk:checked {
+      border-color: var(--blue);
+      background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='white' stroke-width='2.2'%3E%3Cpath d='M3.5 8.5l3 3 6-7'/%3E%3C/svg%3E") center / 12px no-repeat;
+    }
+
+    /* Radio */
+    .rd { flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1px solid #b5b5b5; background: #fff; box-sizing: border-box; }
+    input:checked ~ .rd { border: 5px solid var(--blue); }
+
+    /* Shipping options */
+    .opt {
+      position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px;
+      border: 1px solid #dedede; font-size: 13px; font-weight: 500; cursor: pointer; background: #fff;
+    }
+    .opt + .opt { margin-top: -1px; }
+    .opt:first-child { border-radius: 6px 6px 0 0; }
+    .opt:last-child { border-radius: 0 0 6px 6px; }
+    .opt:has(input:checked) { border-color: var(--blue); background: #f0f5ff; z-index: 1; }
+
+    /* Payment rows */
+    .opt-p { display: flex; align-items: center; gap: 12px; padding: 14px 16px; font-size: 13px; font-weight: 500; cursor: pointer; position: relative; }
+    .opt-p:has(input:checked) { background: #f0f5ff; box-shadow: inset 0 0 0 1px var(--blue); z-index: 1; }
+
+    /* Card brand badges */
+    .cb { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 24px; border-radius: 4px; font-size: 9px; font-weight: 700; color: #fff; flex: none; }
+  </style>
+</head>
+<body class="bg-white text-[14px]">
+
+<!-- Header -->
+<header class="h-[58px] border-b border-[#dedede] bg-white">
+  <div class="mx-auto flex h-full max-w-[882px] items-center justify-between px-4 lg:px-0">
+    <a href="/" class="text-[17px] font-semibold text-[#222]">ShiftCam Gear</a>
+    <a href="./cart.html" aria-label="Cart">
+      <svg class="h-[22px] w-[22px]" viewBox="0 0 24 24" fill="none" stroke="#0561d1" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"><path d="M6 8h12l1 12H5L6 8z"/><path d="M9 8V6.5a3 3 0 016 0V8"/></svg>
+    </a>
+  </div>
+</header>
+
+<div class="co-wrap">
+  <div class="mx-auto grid max-w-[882px] lg:grid-cols-[449px_360px] lg:justify-between">
+
+    <!-- ================= LEFT ================= -->
+    <main class="order-last px-4 pb-12 pt-8 lg:order-none lg:px-0 lg:pb-10 lg:pt-[38px]">
+
+      <!-- Express checkout -->
+      <p class="text-center text-[13px] text-[#707070]">Express checkout</p>
+      <div class="mt-3 grid grid-cols-3 gap-[9px]">
+        <button type="button" data-static-note="Demo checkout — Shop Pay is disabled in this static build." class="h-[43px] rounded-[5px] bg-[#5a31f4] text-[21px] font-bold tracking-tight text-white">shop</button>
+        <button type="button" data-static-note="Demo checkout — PayPal is disabled in this static build." class="h-[43px] rounded-[5px] bg-[#ffc439] text-[19px] font-bold italic"><span class="text-[#003087]">Pay</span><span class="text-[#009cde]">Pal</span></button>
+        <button type="button" data-static-note="Demo checkout — Google Pay is disabled in this static build." class="flex h-[43px] items-center justify-center gap-1.5 rounded-[5px] bg-black text-[20px] text-white">
+          <svg class="h-5 w-5" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Pay
+        </button>
+      </div>
+
+      <div class="mt-[26px] flex items-center">
+        <span class="h-px flex-1 bg-[#dedede]"></span>
+        <span class="px-3 text-[12px] text-[#707070]">OR</span>
+        <span class="h-px flex-1 bg-[#dedede]"></span>
+      </div>
+
+      <form id="checkout-form" data-static-form="Demo checkout — payment is disabled in this static build." onsubmit="return false">
+
+        <!-- Contact -->
+        <div class="mt-[26px] flex items-baseline justify-between">
+          <h2 class="text-[17px] font-semibold">Contact</h2>
+          <a href="#" class="text-[13px] text-[#0561d1] underline">Sign in</a>
+        </div>
+        <div class="fld mt-3">
+          <input id="email" type="email" placeholder=" " autocomplete="email">
+          <label for="email">Email</label>
+          <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1-1.5 2M12 17h.01"/></svg>
+        </div>
+        <label class="mt-3 flex cursor-pointer items-center gap-2 text-[13px]"><input type="checkbox" class="chk" checked> Email me VIP Customer offers &amp; future deals!</label>
+
+        <!-- Delivery -->
+        <h2 class="mt-[30px] text-[17px] font-semibold">Delivery</h2>
+        <div class="mt-3 space-y-[10px]">
+          <div class="fld">
+            <select id="country" autocomplete="country-name">
+              <option>Bangladesh</option>
+              <option>United States</option>
+              <option>United Kingdom</option>
+              <option>Canada</option>
+              <option>Australia</option>
+              <option>India</option>
+              <option>Hong Kong SAR</option>
+              <option>Singapore</option>
+            </select>
+            <label for="country">Country/Region</label>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="grid grid-cols-2 gap-[10px]">
+            <div class="fld"><input id="fname" type="text" placeholder=" " autocomplete="given-name"><label for="fname">First name</label></div>
+            <div class="fld"><input id="lname" type="text" placeholder=" " autocomplete="family-name"><label for="lname">Last name</label></div>
+          </div>
+          <div class="fld"><input id="company" type="text" placeholder=" " autocomplete="organization"><label for="company">Company (optional)</label></div>
+          <div class="fld"><input id="address" type="text" placeholder=" " autocomplete="address-line1"><label for="address">Address</label></div>
+          <div class="fld"><input id="apt" type="text" placeholder=" " autocomplete="address-line2"><label for="apt">Apartment, suite, etc. (optional)</label></div>
+          <div class="grid grid-cols-2 gap-[10px]">
+            <div class="fld"><input id="city" type="text" placeholder=" " autocomplete="address-level2"><label for="city">City</label></div>
+            <div class="fld"><input id="zip" type="text" placeholder=" " autocomplete="postal-code"><label for="zip">Postal code (optional)</label></div>
+          </div>
+          <div class="fld">
+            <input id="phone" type="tel" placeholder=" " autocomplete="tel">
+            <label for="phone">Phone</label>
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1-1.5 2M12 17h.01"/></svg>
+          </div>
+        </div>
+        <label class="mt-3 flex cursor-pointer items-center gap-2 text-[13px]"><input type="checkbox" class="chk"> Text me with future updates &amp; exclusive discounts!</label>
+
+        <!-- Shipping method -->
+        <h3 class="mt-[26px] text-[14.5px] font-semibold">Shipping method</h3>
+        <div class="mt-3">
+          <label class="opt">
+            <input type="radio" name="ship" value="8" class="sr-only" checked><span class="rd"></span>
+            <span class="flex-1">Standard Shipping (Est. 7-14 Business Days)</span>
+            <span>$8.00</span>
+          </label>
+          <label class="opt">
+            <input type="radio" name="ship" value="50" class="sr-only"><span class="rd"></span>
+            <span class="flex-1">Express Shipping (Est. 3-5 Business Days)<br><span class="font-normal">Tracking number provided</span></span>
+            <span>$50.00</span>
+          </label>
+        </div>
+
+        <!-- Payment -->
+        <h2 class="mt-[34px] text-[17px] font-semibold">Payment</h2>
+        <p class="mt-1 text-[12.5px] text-[#707070]">All transactions are secure and encrypted.</p>
+
+        <div class="mt-3 overflow-hidden rounded-md border border-[#dedede] bg-white">
+          <!-- Credit card -->
+          <div>
+            <label class="opt-p">
+              <input type="radio" name="pay" value="card" class="sr-only" checked><span class="rd"></span>
+              <span class="flex-1">Credit card</span>
+              <span class="flex items-center gap-1">
+                <span class="cb bg-[#1434cb] italic">VISA</span>
+                <span class="cb bg-[#1a1a1a]"><span class="-mr-1.5 h-3.5 w-3.5 rounded-full bg-[#eb001b]"></span><span class="h-3.5 w-3.5 rounded-full bg-[#f79e1b] opacity-90"></span></span>
+                <span class="cb bg-[#2e77bc]">AMEX</span>
+                <span class="cb bg-gradient-to-r from-[#d9272e] via-[#1c4f8c] to-[#0f8f8f] text-[7px]">UnionPay</span>
+              </span>
+            </label>
+            <div id="card-panel" class="space-y-[10px] bg-[#f5f5f5] p-[14px]">
+              <div class="fld">
+                <input id="cardnum" type="text" inputmode="numeric" placeholder=" " autocomplete="cc-number">
+                <label for="cardnum">Card number</label>
+                <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+              </div>
+              <div class="grid grid-cols-2 gap-[10px]">
+                <div class="fld"><input id="exp" type="text" inputmode="numeric" placeholder=" " autocomplete="cc-exp"><label for="exp">Expiration date (MM / YY)</label></div>
+                <div class="fld">
+                  <input id="cvv" type="text" inputmode="numeric" placeholder=" " autocomplete="cc-csc">
+                  <label for="cvv">Security code</label>
+                  <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1-1.5 2M12 17h.01"/></svg>
+                </div>
+              </div>
+              <div class="fld"><input id="cardname" type="text" placeholder=" " autocomplete="cc-name"><label for="cardname">Name on card</label></div>
+              <label class="flex cursor-pointer items-center gap-2 pt-1 text-[13px]"><input type="checkbox" class="chk" checked> Use shipping address as billing address</label>
+            </div>
+          </div>
+
+          <!-- PayPal -->
+          <label class="opt-p border-t border-[#dedede]">
+            <input type="radio" name="pay" value="paypal" class="sr-only"><span class="rd"></span>
+            <span class="flex-1">PayPal</span>
+            <span class="text-[13px] font-bold italic"><span class="text-[#003087]">Pay</span><span class="text-[#009cde]">Pal</span></span>
+          </label>
+
+          <!-- Additional -->
+          <label class="opt-p border-t border-[#dedede]">
+            <input type="radio" name="pay" value="more" class="sr-only"><span class="rd"></span>
+            <span class="flex-1">Additional payment methods</span>
+            <span class="flex items-center gap-1">
+              <span class="cb bg-[#1434cb] italic">VISA</span>
+              <span class="cb bg-[#1a1a1a]"><span class="-mr-1.5 h-3.5 w-3.5 rounded-full bg-[#eb001b]"></span><span class="h-3.5 w-3.5 rounded-full bg-[#f79e1b] opacity-90"></span></span>
+              <span class="cb bg-gradient-to-r from-[#d9272e] via-[#1c4f8c] to-[#0f8f8f] text-[7px]">UnionPay</span>
+              <span class="cb border border-[#dedede] bg-white text-[9px] font-normal text-[#4a6fa5]">+82</span>
+            </span>
+          </label>
+
+          <!-- Klarna -->
+          <label class="opt-p border-t border-[#dedede]">
+            <input type="radio" name="pay" value="klarna" class="sr-only"><span class="rd"></span>
+            <span class="flex-1">Klarna</span>
+            <span class="cb bg-[#ffb3c7] !text-black">Klarna</span>
+          </label>
+
+          <!-- Afterpay -->
+          <label class="opt-p border-t border-[#dedede]">
+            <input type="radio" name="pay" value="afterpay" class="sr-only"><span class="rd"></span>
+            <span class="flex-1">Afterpay</span>
+            <span class="flex items-center gap-1">
+              <span class="cb bg-[#b2fce4]"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h12l-3-3M19 15H7l3 3"/></svg></span>
+              <span class="cb bg-[#b2fce4]"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9h12l-3-3M19 15H7l3 3"/></svg></span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Save info -->
+        <div class="mt-[48px] flex items-start justify-between gap-6">
+          <div>
+            <p class="text-[13px] text-[#222]">Save my information for a faster checkout</p>
+            <p class="mt-0.5 max-w-[360px] text-[11px] leading-snug text-[#707070]">By paying, you agree to create a Shop account subject to Shop's <a href="#" class="underline">Terms</a> and <a href="#" class="underline">Privacy Policy</a>.</p>
+          </div>
+          <a href="#" class="shrink-0 text-[13px] text-[#0561d1]">Not now</a>
+        </div>
+
+        <button type="submit" id="pay-now" class="mt-10 h-[44px] w-full rounded-md bg-[#0561d1] text-[14px] font-semibold text-white hover:bg-[#044fae]">Pay now</button>
+      </form>
+
+      <nav class="mt-14 flex flex-wrap gap-x-3 gap-y-1 text-[13px] text-[#0561d1]">
+        <a href="#" class="underline">Refund policy</a>
+        <a href="#" class="underline">Shipping</a>
+        <a href="#" class="underline">Privacy policy</a>
+        <a href="#" class="underline">Terms of service</a>
+      </nav>
+    </main>
+
+    <!-- ================= RIGHT (Order summary) ================= -->
+    <aside class="order-first border-b border-[#dedede] bg-[#f5f5f5] px-4 py-6 lg:order-none lg:border-0 lg:bg-transparent lg:px-0 lg:pb-10 lg:pt-[36px]">
+      <div class="lg:sticky lg:top-6">
+
+        <!-- Items -->
+        <ul class="space-y-3.5">
+          <li data-item class="flex items-start gap-3.5">
+            <div class="relative h-[58px] w-[58px] shrink-0 rounded-lg border border-black/10 bg-white">
+              <img src="../images/product/progrip-vision-kit-2.webp" alt="SnapStand Mini" class="h-full w-full rounded-lg object-contain p-1">
+              <span class="absolute -right-1.5 -top-1.5 flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-black text-[12px] text-white">1</span>
+            </div>
+            <div class="min-w-0 flex-1 pt-1.5">
+              <p class="text-[13px] leading-tight">SnapStand Mini</p>
+              <p class="mt-0.5 text-[11px] text-[#707070]">Chalk Pink</p>
+            </div>
+            <div class="pt-1.5 text-right text-[13px]"><span class="now">$23.20</span></div>
+          </li>
+
+          <li data-item class="flex items-start gap-3.5">
+            <div class="relative h-[58px] w-[58px] shrink-0 rounded-lg border border-black/10 bg-white">
+              <img src="../images/product/s-mount-stick-on-plate.webp" alt="Universal S.Mount" class="h-full w-full rounded-lg object-contain p-1">
+              <span class="absolute -right-1.5 -top-1.5 flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-black text-[12px] text-white">1</span>
+            </div>
+            <div class="min-w-0 flex-1 pt-1.5">
+              <p class="text-[13px] leading-tight">Universal S.Mount</p>
+              <p class="dline mt-0.5 flex items-center gap-1 text-[11px] text-[#707070]">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>KEYNOTE10 (-$2.99)
+              </p>
+            </div>
+            <div class="text-right text-[13px]">
+              <s class="old block text-[11px] text-[#707070]">$29.99</s>
+              <span class="now">$27.00</span>
+            </div>
+          </li>
+
+          <li data-item class="flex items-start gap-3.5">
+            <div class="relative h-[58px] w-[58px] shrink-0 rounded-lg border border-black/10 bg-white">
+              <img src="../images/product/s-mount-stick-on-plate-2.webp" alt="S.Mount Stick-On Plate" class="h-full w-full rounded-lg object-contain p-1">
+              <span class="absolute -right-1.5 -top-1.5 flex h-[22px] min-w-[22px] items-center justify-center rounded-full bg-black text-[12px] text-white">1</span>
+            </div>
+            <div class="min-w-0 flex-1 pt-1.5">
+              <p class="text-[13px] leading-tight">S.Mount Stick-On Plate</p>
+              <p class="mt-0.5 text-[11px] text-[#707070]">iPhone 18 Pro Max / Burgundy</p>
+              <p class="dline mt-0.5 flex items-center gap-1 text-[11px] text-[#707070]">
+                <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>KEYNOTE10 (-$2.99)
+              </p>
+            </div>
+            <div class="text-right text-[13px]">
+              <s class="old block text-[11px] text-[#707070]">$29.90</s>
+              <span class="now">$26.91</span>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Discount -->
+        <form id="disc-form" class="mt-5 flex gap-[10px]" onsubmit="return false">
+          <div class="fld flex-1">
+            <input id="disc" type="text" placeholder=" " autocomplete="off" style="height:44px">
+            <label for="disc">Discount code or gift card</label>
+          </div>
+          <button type="submit" id="apply" disabled class="h-[44px] rounded-md bg-[#e5e5e5] px-[14px] text-[13px] text-[#8a8a8a]">Apply</button>
+        </form>
+        <p id="disc-err" class="mt-1.5 hidden text-[12px] text-red-600">Enter a valid discount code or gift card</p>
+
+        <div id="chip" class="mt-3 inline-flex items-center gap-1.5 rounded-md bg-[#e8e8e8] px-2 py-1.5 text-[13px]">
+          <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>
+          KEYNOTE10
+          <button type="button" id="chip-x" aria-label="Remove discount" class="text-[#555]"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        </div>
+
+        <!-- Totals -->
+        <dl class="mt-8 space-y-2 text-[13px]">
+          <div class="flex justify-between"><dt>Subtotal · 3 items</dt><dd id="t-sub">$77.11</dd></div>
+          <div class="flex justify-between">
+            <dt class="flex items-center gap-1">Shipping
+              <svg class="h-3.5 w-3.5 text-[#707070]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1-1.5 2M12 17h.01"/></svg>
+            </dt>
+            <dd id="t-ship">$8.00</dd>
+          </div>
+        </dl>
+        <div class="mt-4 flex items-baseline justify-between">
+          <span class="text-[17px] font-semibold">Total</span>
+          <span><span class="mr-1.5 text-[11px] text-[#707070]">USD</span><span id="t-total" class="text-[17px] font-semibold">$85.11</span></span>
+        </div>
+        <p id="t-save-row" class="mt-1 flex items-center gap-1.5 text-[13px]">
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 12V4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.2"/></svg>
+          TOTAL SAVINGS <span id="t-save">$5.98</span>
+        </p>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+  (function () {
+    var items = [ { base: 23.20, disc: 0 }, { base: 29.99, disc: 2.99 }, { base: 29.90, disc: 2.99 } ];
+    var applied = true;
+    var money = function (n) { return '$' + n.toFixed(2); };
+
+    var rows = document.querySelectorAll('[data-item]');
+    var chip = document.getElementById('chip');
+    var saveRow = document.getElementById('t-save-row');
+
+    function render() {
+      var sub = 0, save = 0;
+      rows.forEach(function (el, i) {
+        var d = applied ? items[i].disc : 0;
+        var now = items[i].base - d;
+        sub += now; save += d;
+        el.querySelector('.now').textContent = money(now);
+        var old = el.querySelector('.old'); if (old) old.classList.toggle('hidden', !d);
+        var dl = el.querySelector('.dline'); if (dl) dl.classList.toggle('hidden', !d);
+      });
+      var ship = parseFloat(document.querySelector('input[name="ship"]:checked').value);
+      document.getElementById('t-sub').textContent = money(sub);
+      document.getElementById('t-ship').textContent = money(ship);
+      document.getElementById('t-total').textContent = money(sub + ship);
+      document.getElementById('t-save').textContent = money(save);
+      chip.classList.toggle('hidden', !applied);
+      saveRow.classList.toggle('hidden', !save);
+    }
+
+    // Shipping
+    document.querySelectorAll('input[name="ship"]').forEach(function (r) { r.addEventListener('change', render); });
+
+    // Payment: show card form only for "Credit card"
+    var panel = document.getElementById('card-panel');
+    function payChange() {
+      panel.classList.toggle('hidden', document.querySelector('input[name="pay"]:checked').value !== 'card');
+    }
+    document.querySelectorAll('input[name="pay"]').forEach(function (r) { r.addEventListener('change', payChange); });
+
+    // Discount
+    var disc = document.getElementById('disc');
+    var apply = document.getElementById('apply');
+    var err = document.getElementById('disc-err');
+    disc.addEventListener('input', function () {
+      var has = disc.value.trim().length > 0;
+      apply.disabled = !has;
+      apply.className = 'h-[44px] rounded-md px-[14px] text-[13px] ' + (has ? 'bg-[#0561d1] text-white' : 'bg-[#e5e5e5] text-[#8a8a8a]');
+      err.classList.add('hidden');
+    });
+    document.getElementById('disc-form').addEventListener('submit', function () {
+      if (disc.value.trim().toUpperCase() === 'KEYNOTE10') {
+        applied = true; disc.value = ''; disc.dispatchEvent(new Event('input')); render();
+      } else {
+        err.classList.remove('hidden');
+      }
+    });
+    document.getElementById('chip-x').addEventListener('click', function () { applied = false; render(); });
+
+    // Card number / expiry formatting
+    document.getElementById('cardnum').addEventListener('input', function (e) {
+      var v = e.target.value.replace(/\D/g, '').slice(0, 16);
+      e.target.value = v.replace(/(.{4})/g, '$1 ').trim();
+    });
+    document.getElementById('exp').addEventListener('input', function (e) {
+      var v = e.target.value.replace(/\D/g, '').slice(0, 4);
+      e.target.value = v.length > 2 ? v.slice(0, 2) + ' / ' + v.slice(2) : v;
+    });
+
+    render(); payChange();
+  })();
+</script>
+</body>
+</html>

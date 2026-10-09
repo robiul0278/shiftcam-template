@@ -1,0 +1,124 @@
+<section id="best" data-slider class="w-full mx-auto px-4 md:px-8 lg:px-12 py-12 bg-white">
+  <div class="flex justify-between items-end mb-8">
+    <div>
+      <p class="text-base md:text-lg text-black mb-1">Save up to 40% OFF on our</p>
+      <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter leading-none">Best Sellers</h2>
+    </div>
+    <div class="flex gap-2">
+      <button data-prev class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-neutral-300 text-neutral-400 grid place-items-center hover:border-black hover:text-black transition" aria-label="Previous"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+      <button data-next class="w-8 h-8 md:w-10 md:h-10 rounded-full border border-black text-black grid place-items-center hover:bg-neutral-100 transition" aria-label="Next"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+    </div>
+  </div>
+
+  <div data-track class="flex gap-4 md:gap-6 overflow-x-auto snap-x" style="scrollbar-width: none; -ms-overflow-style: none;">
+
+    <!-- Card 1: sale price + badge -->
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <span class="absolute top-5 left-5 z-10 bg-rose-600 text-white text-xs font-semibold px-4 py-2 rounded-full">Save 20%</span>
+        <img src="./images/product/progrip-superzoom-kit.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="ProGrip SuperZoom Kit">
+        <img src="./images/product/progrip-superzoom-kit-2.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10">
+        <p class="text-lg font-medium">ProGrip SuperZoom Kit</p>
+        <p class="text-sm mt-1"><span class="text-xs text-rose-600">From</span> <span class="text-rose-600 font-medium">$415.12 USD</span> <s class="text-neutral-500 text-xs ml-1">$518.90 USD</s></p>
+      </div>
+    </a>
+
+    <!-- Card 2: iPhone badge + colour swatches, full-bleed image -->
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <span class="absolute top-5 left-5 z-10 bg-orange-600 text-white text-xs font-semibold px-4 py-2 rounded-full">iPhone 18 Pro</span>
+        <img src="./images/product/s-mount-stick-on-plate.webp" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0" alt="S.Mount Stick-On Plate">
+        <img src="./images/product/s-mount-stick-on-plate-2.webp" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10">
+        <p class="text-lg font-medium">S.Mount Stick-On Plate</p>
+        <p class="text-sm mt-1">$29.90 USD</p>
+        <div class="flex items-center gap-2 mt-3">
+          <span class="w-3.5 h-3.5 rounded-full bg-[#8a4560]"></span>
+          <span class="w-3.5 h-3.5 rounded-full bg-black"></span>
+          <span class="w-3.5 h-3.5 rounded-full bg-blue-400"></span>
+          <span class="w-3.5 h-3.5 rounded-full bg-neutral-300"></span>
+          <span class="text-[11px] text-neutral-500">+2</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 3: rating + swatches -->
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <span class="absolute top-5 right-5 z-10 bg-white text-xs text-neutral-600 px-3 py-1.5 rounded-full flex items-center gap-1"><span class="text-amber-500">★</span> 4.4</span>
+        <img src="./images/product/snapgrip-pro.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="SnapGrip Pro">
+        <img src="./images/product/snapgrip-pro-2.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10">
+        <p class="text-lg font-medium">SnapGrip Pro*</p>
+        <p class="text-sm mt-1">$89.00 USD</p>
+        <div class="flex items-center gap-2 mt-3">
+          <span class="w-3.5 h-3.5 rounded-full bg-neutral-200 border border-neutral-300"></span>
+          <span class="w-3.5 h-3.5 rounded-full bg-slate-700"></span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Card 4: series badge + sale badge + rating -->
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <div class="absolute top-5 left-5 z-10 flex flex-col items-start gap-3">
+          <span class="bg-neutral-900 text-white text-xs font-semibold px-4 py-2 rounded-full">P.Series</span>
+          <span class="bg-rose-600 text-white text-xs font-semibold px-4 py-2 rounded-full">Save 25%</span>
+        </div>
+        <span class="absolute top-5 right-5 z-10 bg-white text-xs text-neutral-600 px-3 py-1.5 rounded-full flex items-center gap-1"><span class="text-amber-500">★</span> 5.0</span>
+        <img src="./images/product/p-starter-kit.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="p.Starter Kit">
+        <img src="./images/product/p-starter-kit-2.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10">
+        <p class="text-lg font-medium">p.Starter Kit</p>
+        <p class="text-sm mt-1"><span class="text-rose-600 font-medium">$299.00 USD</span> <s class="text-neutral-500 text-xs ml-1">$399.00 USD</s></p>
+      </div>
+    </a>
+
+    <!-- Remaining cards: same layout, plain -->
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <img src="./images/product/creator-kit-pro.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="SnapGrip Creator Kit">
+        <img src="./images/product/creator-kit-pro-2.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10"><p class="text-lg font-medium">SnapGrip Creator Kit</p><p class="text-sm mt-1">$129.00 USD</p></div>
+    </a>
+
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <img src="./images/product/progrip-1.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="ProGrip">
+        <img src="./images/product/progrip-2.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10"><p class="text-lg font-medium">ProGrip</p><p class="text-sm mt-1">$149.00 USD</p></div>
+    </a>
+
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <img src="./images/product/progrip-vision-kit.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="ProGrip Vision Kit">
+        <img src="./images/product/progrip-vision-kit-2.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10"><p class="text-lg font-medium">ProGrip Vision Kit</p><p class="text-sm mt-1">$199.00 USD</p></div>
+    </a>
+
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <img src="./images/product/wrkflw-combo.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="WRKFLW Combo">
+        <img src="./images/product/wrkflw-combo-1.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10"><p class="text-lg font-medium">WRKFLW Combo</p><p class="text-sm mt-1">$279.00 USD</p></div>
+    </a>
+
+    <a href="/pages/product-page.html" class="group snap-start shrink-0 w-[80%] sm:w-[45%] lg:w-[23.5%] bg-neutral-50 rounded-3xl overflow-hidden flex flex-col">
+      <div class="aspect-[3/3.4] relative">
+        <img src="./images/product/directors-kit.webp" class="absolute inset-0 w-full h-full object-contain p-6 transition-opacity duration-300 group-hover:opacity-0" alt="Director's Kit">
+        <img src="./images/product/directors-kit-2.webp" class="absolute inset-0 w-full h-full object-contain p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100" alt="">
+      </div>
+      <div class="px-10 pt-6 pb-10"><p class="text-lg font-medium">Director's Kit</p><p class="text-sm mt-1">$349.00 USD</p></div>
+    </a>
+
+  </div>
+</section>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart – ShiftCam Gear</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0b0c'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='20' font-weight='bold' fill='white' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'] }, colors: { ink: '#0b0b0c' } } } }
+  </script>
+</head>
+<body class="bg-white font-sans text-neutral-900 antialiased">
+<div data-include="../components/announcement-bar.html"></div>
+<div data-include="../components/navbar.html"></div>
+<div data-include="../components/cart-drawer.html"></div>
+
+<main class="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12 pt-10 pb-20 lg:pt-12">
+
+  <!-- Breadcrumb -->
+  <nav class="flex items-center gap-3 text-[11px] text-neutral-700">
+    <a href="/" aria-label="Home"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-8 9 8v10H3z"/></svg></a>
+    <span>Your Cart</span>
+  </nav>
+
+  <h1 class="mt-4 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter">Your Cart <span id="cart-count" class="align-middle text-lg font-medium text-neutral-400">(2)</span></h1>
+
+  <div id="cart-body" class="mt-10 grid gap-10 lg:grid-cols-[1fr_360px] lg:gap-14">
+
+    <!-- Items -->
+    <div>
+      <!-- Free shipping progress -->
+      <div class="rounded-2xl bg-neutral-50 p-5">
+        <p id="ship-note" class="text-xs font-medium">Spend <b>$46.09</b> more to reach free standard shipping</p>
+        <div class="mt-3 h-1.5 overflow-hidden rounded-full bg-neutral-200">
+          <div id="ship-bar" class="h-full w-[54%] rounded-full bg-neutral-900 transition-all duration-500"></div>
+        </div>
+        <p class="mt-2 text-[10px] text-neutral-500">Free standard shipping on orders over $100 USD.</p>
+      </div>
+
+      <ul id="cart-items" class="mt-6 divide-y divide-neutral-100">
+        <li data-unit="27.00" class="flex gap-4 py-6">
+          <a href="./product-page.html" class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="../images/product/s-mount-stick-on-plate.webp" alt="Universal S.Mount" class="h-full w-full object-contain p-2" loading="lazy"></a>
+          <div class="flex flex-1 flex-col">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-sm font-semibold"><a href="./product-page.html" class="hover:underline">Universal S.Mount</a></h3>
+                <p class="mt-1 text-xs text-neutral-500">🏷 KEYNOTE10 (-$2.99)</p>
+              </div>
+              <p class="text-right text-sm font-semibold"><s class="mr-2 block text-[11px] font-normal text-neutral-400">$29.99</s><span class="line-total">$27.00</span></p>
+            </div>
+            <div class="mt-auto flex items-center justify-between pt-3">
+              <div class="flex items-center rounded-full border border-neutral-200">
+                <button type="button" data-dec aria-label="Decrease quantity" class="grid h-8 w-8 place-items-center text-lg leading-none hover:opacity-60">−</button>
+                <span data-qty class="w-8 text-center text-xs font-semibold">1</span>
+                <button type="button" data-inc aria-label="Increase quantity" class="grid h-8 w-8 place-items-center text-lg leading-none hover:opacity-60">+</button>
+              </div>
+              <button type="button" data-remove class="text-xs text-neutral-500 underline hover:text-neutral-900">Remove</button>
+            </div>
+          </div>
+        </li>
+        <li data-unit="26.91" class="flex gap-4 py-6">
+          <a href="./product-page.html" class="h-24 w-24 shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="../images/product/s-mount-stick-on-plate-2.webp" alt="S.Mount Stick-On Plate" class="h-full w-full object-contain p-2" loading="lazy"></a>
+          <div class="flex flex-1 flex-col">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <h3 class="text-sm font-semibold"><a href="./product-page.html" class="hover:underline">S.Mount Stick-On Plate</a></h3>
+                <p class="mt-1 text-xs text-neutral-500">iPhone 18 Pro Max / Burgundy</p>
+                <p class="mt-0.5 text-xs text-neutral-500">🏷 KEYNOTE10 (-$2.99)</p>
+              </div>
+              <p class="text-right text-sm font-semibold"><s class="mr-2 block text-[11px] font-normal text-neutral-400">$29.90</s><span class="line-total">$26.91</span></p>
+            </div>
+            <div class="mt-auto flex items-center justify-between pt-3">
+              <div class="flex items-center rounded-full border border-neutral-200">
+                <button type="button" data-dec aria-label="Decrease quantity" class="grid h-8 w-8 place-items-center text-lg leading-none hover:opacity-60">−</button>
+                <span data-qty class="w-8 text-center text-xs font-semibold">1</span>
+                <button type="button" data-inc aria-label="Increase quantity" class="grid h-8 w-8 place-items-center text-lg leading-none hover:opacity-60">+</button>
+              </div>
+              <button type="button" data-remove class="text-xs text-neutral-500 underline hover:text-neutral-900">Remove</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+
+      <div id="cart-empty" class="hidden mt-6 rounded-2xl bg-neutral-50 p-10 text-center">
+        <p class="text-lg font-semibold">Your cart is empty</p>
+        <p class="mt-2 text-sm text-neutral-500">Looks like you haven't added any gear yet.</p>
+        <a href="./shop.html" class="mt-6 inline-block rounded-full bg-neutral-900 px-8 py-3 text-sm font-semibold text-white hover:bg-neutral-700 transition">Start shopping</a>
+      </div>
+
+      <!-- You may also like -->
+      <div class="mt-10">
+        <h2 class="text-xl font-bold tracking-tight">You may also like</h2>
+        <div class="mt-4 flex max-w-[420px] items-center gap-4 rounded-2xl border border-neutral-100 p-4">
+          <a href="./product-page.html" class="h-20 w-20 shrink-0 overflow-hidden rounded-xl bg-neutral-50"><img src="../images/product/snapgrip-pro.webp" alt="SnapGrip Pro" class="h-full w-full object-contain p-1" loading="lazy"></a>
+          <div class="flex-1">
+            <h3 class="text-sm font-semibold"><a href="./product-page.html" class="hover:underline">SnapGrip Pro*</a></h3>
+            <p class="mt-0.5 text-xs text-neutral-600">$89.00 USD</p>
+          </div>
+          <button type="button" data-static-note="Demo cart — adding items is disabled in this static build." class="rounded-full border border-neutral-900 px-5 py-2 text-xs font-semibold hover:bg-neutral-900 hover:text-white transition">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <aside class="lg:sticky lg:top-6 lg:self-start">
+      <div class="rounded-2xl bg-neutral-50 p-6">
+        <h2 class="text-xl font-bold tracking-tight">Order summary</h2>
+        <dl class="mt-5 space-y-2 text-sm">
+          <div class="flex justify-between"><dt class="text-neutral-600">Subtotal · <span id="sum-count">2 items</span></dt><dd id="sum-subtotal" class="font-semibold">$53.91</dd></div>
+          <div class="flex justify-between"><dt class="text-neutral-600">Shipping</dt><dd id="sum-shipping" class="font-semibold">$8.00</dd></div>
+          <div class="flex items-baseline justify-between border-t border-neutral-200 pt-4"><dt class="text-base font-semibold">Total</dt><dd><span class="mr-1 text-[11px] text-neutral-500">USD</span><span id="sum-total" class="text-xl font-semibold">$61.91</span></dd></div>
+        </dl>
+        <p class="mt-2 text-xs text-neutral-500">🏷 TOTAL SAVINGS $5.98 with KEYNOTE10</p>
+        <a href="./checkout.html" class="mt-6 block h-12 rounded-full bg-neutral-900 text-center text-sm font-semibold leading-[3rem] text-white hover:bg-neutral-700 transition">Check out</a>
+        <a href="./shop.html" class="mt-3 block text-center text-xs font-medium underline">Continue shopping</a>
+        <p class="mt-5 text-[10px] leading-relaxed text-neutral-500">Taxes and shipping are estimated on this demo page and confirmed at checkout. This is a static demo — no payment is processed.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<div data-include="../components/footer.html"></div>
+<script src="https://unpkg.com/lucide@1.48.0/dist/umd/lucide.min.js"></script>
+<script src="../js/main.js"></script>
+<script>
+  // Demo cart math (page-local): qty steppers, remove, and totals recompute locally.
+  (function () {
+    const FREE_OVER = 100, SHIP_FLAT = 8;
+    const itemsEl = document.getElementById('cart-items');
+    if (!itemsEl) return;
+    const money = n => '$' + n.toFixed(2);
+
+    function recalc() {
+      const rows = [...itemsEl.querySelectorAll('li')];
+      let subtotal = 0, count = 0;
+      rows.forEach(li => {
+        const qty = parseInt(li.querySelector('[data-qty]').textContent, 10) || 0;
+        const line = (parseFloat(li.dataset.unit) || 0) * qty;
+        li.querySelector('.line-total').textContent = money(line);
+        subtotal += line;
+        count += qty;
+      });
+      const shipping = rows.length === 0 || subtotal >= FREE_OVER ? 0 : SHIP_FLAT;
+      const total = subtotal + shipping;
+      document.getElementById('sum-subtotal').textContent = money(subtotal);
+      document.getElementById('sum-shipping').textContent = rows.length === 0 ? money(0) : (shipping === 0 ? 'Free' : money(shipping));
+      document.getElementById('sum-total').textContent = money(total);
+      document.getElementById('sum-count').textContent = count + (count === 1 ? ' item' : ' items');
+      document.getElementById('cart-count').textContent = '(' + count + ')';
+      const pct = Math.min(100, Math.round(subtotal / FREE_OVER * 100));
+      document.getElementById('ship-bar').style.width = pct + '%';
+      document.getElementById('ship-note').innerHTML = subtotal >= FREE_OVER
+        ? 'You unlocked <b>free standard shipping</b>'
+        : 'Spend <b>' + money(FREE_OVER - subtotal) + '</b> more to reach free standard shipping';
+      document.getElementById('cart-empty').classList.toggle('hidden', rows.length > 0);
+      itemsEl.classList.toggle('hidden', rows.length === 0);
+    }
+
+    itemsEl.addEventListener('click', e => {
+      const li = e.target.closest('li');
+      if (!li) return;
+      const qtyEl = li.querySelector('[data-qty]');
+      let qty = parseInt(qtyEl.textContent, 10) || 1;
+      if (e.target.closest('[data-inc]')) qty = Math.min(9, qty + 1);
+      else if (e.target.closest('[data-dec]')) qty = Math.max(1, qty - 1);
+      else if (e.target.closest('[data-remove]')) { li.remove(); recalc(); return; }
+      else return;
+      qtyEl.textContent = qty;
+      recalc();
+    });
+
+    recalc();
+  })();
+</script>
+</body>
+</html>

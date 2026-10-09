@@ -1,0 +1,113 @@
+<footer class="bg-[#161616] text-white">
+
+  <!-- Main footer -->
+  <div class="bg-[#0a0a0a] rounded-b-[28px] relative z-10 px-3.5 pt-3.5 pb-10 md:px-9 md:pt-14 md:pb-14">
+    <div class="flex flex-col lg:grid lg:grid-cols-2">
+
+      <!-- Newsletter (mobile/tablet: nav er niche, desktop: left) -->
+      <div class="order-2 lg:order-none mt-10 pt-10 px-0.5 border-t border-white/10 lg:mt-0 lg:pt-0 lg:border-t-0 lg:pr-16 flex flex-col lg:min-h-[232px] lg:border-r">
+        <h3 class="text-2xl md:text-[28px] font-semibold md:font-extrabold tracking-tight leading-tight">Stay in the loop with our weekly newsletter</h3>
+
+        <form class="relative mt-5 w-full max-w-[448px] lg:max-w-[336px]" data-static-form="Thanks for subscribing — the newsletter is a demo in this static build.">
+          <input type="email" placeholder="Enter your email" class="w-full h-[46px] bg-white/[0.07] rounded-xl pl-5 pr-14 text-xs text-white placeholder:text-neutral-400 outline-none focus:bg-white/10 transition">
+          <button type="submit" aria-label="Subscribe" class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white text-black grid place-items-center hover:bg-neutral-200 transition">
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </form>
+
+        <p class="mt-5 text-[13px] lg:text-[11px] font-medium">Sign Up and Get 15% OFF your FIRST ShiftCam Order - applicable for selected products only.</p>
+
+        <div class="flex items-center gap-6 lg:gap-5 mt-8 lg:mt-auto">
+          <a href="#" aria-label="Facebook" class="hover:opacity-70 transition"><i data-lucide="facebook" class="w-[22px] h-[22px] lg:w-[18px] lg:h-[18px] fill-white"></i></a>
+          <a href="#" aria-label="Instagram" class="hover:opacity-70 transition"><i data-lucide="instagram" class="w-[22px] h-[22px] lg:w-[18px] lg:h-[18px]"></i></a>
+          <a href="#" aria-label="YouTube" class="hover:opacity-70 transition"><i data-lucide="youtube" class="w-[22px] h-[22px] lg:w-[18px] lg:h-[18px] fill-white text-black"></i></a>
+          <a href="#" aria-label="LinkedIn" class="hover:opacity-70 transition"><i data-lucide="linkedin" class="w-[22px] h-[22px] lg:w-[18px] lg:h-[18px] fill-white"></i></a>
+        </div>
+      </div>
+
+      <!-- Nav: mobile = accordion box, tablet = 3 open columns, desktop = right side columns -->
+      <div class="order-1 lg:order-2 border border-white/15 rounded-xl overflow-hidden md:border-0 md:rounded-none md:overflow-visible md:grid md:grid-cols-3 md:gap-x-6 md:mt-0 lg:pl-[120px]">
+
+        <div data-acc class="group border-b border-white/10 md:border-0">
+          <button type="button" aria-expanded="false" class="w-full flex items-center justify-between px-5 py-5 md:p-0 md:cursor-default text-left">
+            <h4 class="text-base md:text-lg font-semibold md:font-bold tracking-tight md:mb-4">Product</h4>
+            <i data-lucide="chevron-down" class="w-4 h-4 md:hidden transition-transform group-data-[open=true]:rotate-180"></i>
+          </button>
+          <ul class="hidden group-data-[open=true]:block md:block px-5 pb-5 md:p-0 space-y-[10px] text-[15px]">
+            <li><a href="/pages/shop.html" class="hover:underline">Shop by Device</a></li>
+            <li><a href="/pages/shop.html" class="hover:underline">Grips</a></li>
+            <li><a href="/pages/shop.html" class="hover:underline">Lenses</a></li>
+            <li><a href="/pages/shop.html" class="hover:underline">Lights</a></li>
+            <li><a href="/pages/shop.html" class="hover:underline">Cases</a></li>
+            <li><a href="/pages/shop.html" class="hover:underline">Accessories</a></li>
+            <li><a href="/pages/shop.html" class="hover:underline">Bundles</a></li>
+          </ul>
+        </div>
+
+        <div data-acc class="group border-b border-white/10 md:border-0">
+          <button type="button" aria-expanded="false" class="w-full flex items-center justify-between px-5 py-5 md:p-0 md:cursor-default text-left">
+            <h4 class="text-base md:text-lg font-semibold md:font-bold tracking-tight md:mb-4">The Brand</h4>
+            <i data-lucide="chevron-down" class="w-4 h-4 md:hidden transition-transform group-data-[open=true]:rotate-180"></i>
+          </button>
+          <ul class="hidden group-data-[open=true]:block md:block px-5 pb-5 md:p-0 space-y-[10px] text-[15px]">
+            <li><a href="/#brand" class="hover:underline">About Us</a></li>
+            <li><a href="/#guide" class="hover:underline">Awards &amp; News</a></li>
+            <li><a href="/pages/shop.html" class="hover:underline">Experience Store</a></li>
+          </ul>
+        </div>
+
+        <div data-acc class="group">
+          <button type="button" aria-expanded="false" class="w-full flex items-center justify-between px-5 py-5 md:p-0 md:cursor-default text-left">
+            <h4 class="text-base md:text-lg font-semibold md:font-bold tracking-tight md:mb-4">Support</h4>
+            <i data-lucide="chevron-down" class="w-4 h-4 md:hidden transition-transform group-data-[open=true]:rotate-180"></i>
+          </button>
+          <ul class="hidden group-data-[open=true]:block md:block px-5 pb-5 md:p-0 space-y-[10px] text-[15px]">
+            <li><a href="/#faq" class="hover:underline">Support &amp; FAQ</a></li>
+            <li><a href="/pages/contact-us.html" class="hover:underline">Contact Us</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar: mobile/tablet centered stack, desktop 3 columns -->
+  <div class="px-6 md:px-9 py-7 flex flex-col items-center gap-5 text-center lg:grid lg:grid-cols-3 lg:gap-6 lg:text-left">
+
+    <!-- Currency -->
+    <div class="order-1 lg:order-none lg:col-start-2 lg:row-start-1 lg:justify-self-center">
+      <button type="button" class="inline-flex items-center gap-2.5 border border-white/20 rounded-full px-4 py-2.5 text-xs hover:border-white/50 transition">
+        <i data-lucide="coins" class="w-4 h-4"></i>
+        <span>Bangladesh (USD $)</span>
+        <i data-lucide="chevron-down" class="w-3 h-3"></i>
+      </button>
+    </div>
+
+    <!-- Payment badges -->
+    <ul class="order-2 lg:order-none lg:col-start-3 lg:row-start-1 flex flex-wrap justify-center lg:justify-end gap-2 lg:justify-self-end text-[8px] font-bold leading-none">
+      <li class="h-[22px] w-[30px] rounded bg-[#1f72cd] grid place-items-center">AMEX</li>
+      <li class="h-[22px] w-[30px] rounded bg-white text-black grid place-items-center">Pay</li>
+      <li class="h-[22px] w-[30px] rounded bg-white text-[#1a4fa3] grid place-items-center">Bank</li>
+      <li class="h-[22px] w-[30px] rounded bg-white text-[#4285f4] grid place-items-center">GPay</li>
+      <li class="h-[22px] w-[30px] rounded bg-[#ffe27a] text-black grid place-items-center">iDEAL</li>
+      <li class="h-[22px] w-[30px] rounded bg-white grid place-items-center"><span class="w-2.5 h-2.5 rounded-full bg-[#eb001b]"></span><span class="w-2.5 h-2.5 rounded-full bg-[#f79e1b] -ml-1"></span></li>
+      <li class="h-[22px] w-[30px] rounded bg-white text-[#003087] grid place-items-center">PayPal</li>
+      <li class="h-[22px] w-[30px] rounded bg-[#5a31f4] grid place-items-center">shop</li>
+      <li class="h-[22px] w-[30px] rounded bg-[#00908f] grid place-items-center">Union</li>
+      <li class="h-[22px] w-[30px] rounded bg-white text-[#1a1f71] italic grid place-items-center">VISA</li>
+    </ul>
+
+    <!-- Copyright + policies -->
+    <div class="order-3 lg:order-none lg:col-start-1 lg:row-start-1">
+      <p class="text-xs">© 2026 ShiftCam Gear. <a href="#" class="underline">Powered by Shopify</a></p>
+      <ul class="flex flex-wrap justify-center lg:justify-start gap-x-3 gap-y-1 mt-3 text-[10px]">
+        <li><a href="#" class="underline">Privacy policy</a></li>
+        <li><a href="#" class="underline">Terms of service</a></li>
+        <li><a href="#" class="underline">Refund policy</a></li>
+        <li><a href="#" class="underline">Shipping policy</a></li>
+      </ul>
+    </div>
+
+  </div>
+</footer>
