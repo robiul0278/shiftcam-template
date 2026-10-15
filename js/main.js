@@ -424,4 +424,86 @@ Promise.all([...document.querySelectorAll('[data-include]')].map(load)).then(() 
       lastY = y;
     }, { passive: true });
   })();
+
+  // One-time bottom-to-top slide-up reveals: Best Sellers, SuperZoom lenses,
+  // Creators gallery and shop "Recently Viewed" (heading first, then cards
+  // staggered 100ms), the "Empower your creativity" heading, and every
+  // remaining homepage/shop title (incl. "Our Global Awards") as its own
+  // single-item group (0ms delay). Hero titles are intentionally excluded.
+  // Injected sections, so they live here — inline scripts in partials never
+  // execute. No fade: transform only.
+  (() => {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const covered = new Set();
+    const groups = [];
+    const best = document.getElementById('best');
+    if (best) {
+      const items = [...best.querySelectorAll('[data-reveal]')];
+      items.forEach(el => covered.add(el));
+      if (items.length) groups.push({ target: best, items });
+    }
+    const empower = document.querySelector('#cats h1[data-reveal]');
+    if (empower) { covered.add(empower); groups.push({ target: empower, items: [empower] }); }
+    // SuperZoom lenses: heading + cards stagger like Best Sellers (one section
+    // observer so tab-filtered cards reveal with the group, never stuck offset)
+    const zoom = document.getElementById('zoom');
+    if (zoom) {
+      const items = [...zoom.querySelectorAll('[data-reveal]')];
+      items.forEach(el => covered.add(el));
+      if (items.length) groups.push({ target: zoom, items });
+    }
+    // Creators gallery: heading + track cards stagger the same way (section
+    // observer so cards scrolled out of the horizontal track still reveal)
+    const creators = document.getElementById('creators');
+    if (creators) {
+      const items = [...creators.querySelectorAll('[data-reveal]')];
+      items.forEach(el => covered.add(el));
+      if (items.length) groups.push({ target: creators, items });
+    }
+    // Shop page "Recently Viewed": heading + track cards, same section-observer
+    // pattern (cards 2-5 sit horizontally off-screen in the overflow track)
+    const rv = document.getElementById('recently-viewed');
+    if (rv) {
+      const items = [...rv.querySelectorAll('[data-reveal]')];
+      items.forEach(el => covered.add(el));
+      if (items.length) groups.push({ target: rv, items });
+    }
+    // Product page "Be inspired": heading + carousel tiles, same section-observer
+    // pattern (tiles 2-5 sit horizontally off-screen in the overflow track)
+    const beInspired = document.getElementById('be-inspired');
+    if (beInspired) {
+      const items = [...beInspired.querySelectorAll('[data-reveal]')];
+      items.forEach(el => covered.add(el));
+      if (items.length) groups.push({ target: beInspired, items });
+    }
+    // Remaining titles: each animates when it scrolls into view. A title fully
+    // clipped by an overflow-hidden shell (its +100px start offset lands past
+    // the clip, leaving its own intersection ratio forever 0 — e.g. the shop
+    // page h1) opts into section-level observation via data-reveal-root;
+    // every other title observes itself so it reveals only once genuinely in
+    // view (bottom-anchored banner titles would fire far too early otherwise).
+    document.querySelectorAll('[data-reveal]').forEach(el => {
+      if (covered.has(el)) return;
+      const target = el.hasAttribute('data-reveal-root') ? (el.closest('section') || el) : el;
+      groups.push({ target, items: [el] });
+    });
+    groups.forEach(({ target, items }) => {
+      if (!items.length) return;
+      const reveal = () => items.forEach((el, i) => {
+        const d = reduce ? 0 : i * 100;
+        if (d) el.style.transitionDelay = d + 'ms';
+        // Reduced motion: no slide at all (CSS transition would still run otherwise)
+        if (reduce) { el.style.transition = 'none'; el.classList.remove('will-change-transform'); }
+        el.classList.replace('translate-y-[100px]', 'translate-y-0');
+        // Drop the compositor layer once the slide has landed (600ms + buffer),
+        // so the promoted layers don't linger after the one-shot reveal.
+        if (!reduce) setTimeout(() => el.classList.remove('will-change-transform'), d + 650);
+      });
+      if (reduce) return reveal();
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => { if (e.isIntersecting) { reveal(); obs.disconnect(); } });
+      }, { threshold: 0.15 });
+      io.observe(target);
+    });
+  })();
 });
